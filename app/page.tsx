@@ -5,23 +5,34 @@ import { useState } from "react";
 export default function CrawlerPage() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<any>("");
 
   const handleCrawl = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
       
-      // const response = await fetch("http://localhost:4005/scrape/Headlines", {
-         const response = await fetch("https://crawlernestbackend.onrender.com/scrape/Headlines", {
+      //  const response = await fetch("http://localhost:4005/scrape/addHeadlines", {
+         const response = await fetch("https://crawlernestbackend.onrender.com/scrape/addHeadlines", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ target: url }),
       });
-      const result = await response.json();
-      setData(result);
+       const result = await response.json();
+    
+
+    //     if (!response.ok) {
+    //   throw new Error("API failed");
+    // }
+
+    // const text = await response.text(); // 👈 safer
+
+    // const result = text ? JSON.parse(text) : null; 
+    setData(result);
+
     } catch (error) {
       alert("Backend not connected!");
+      console.error(error);
     } finally {
       setLoading(false);
     }

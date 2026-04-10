@@ -1,10 +1,17 @@
+/* eslint-disable @typescript-eslint/no-wrapper-object-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/jsx-no-comment-textnodes */
 "use client";
 import { useEffect, useState } from "react";
-
+type ApiResponse = {
+  data?: {
+    form_response_data?: any;
+  };
+};
+export type dataType={
+data :String
+}
 export default function ApiViewer() {
-  const [apiData, setApiData] = useState<string>("");
+  const [apiData, setApiData] = useState<ApiResponse | null>(null);
   const [apiUrl, setApiUrl] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -23,9 +30,9 @@ export default function ApiViewer() {
   if (loading) return <div className="p-10 text-center">Loading Accurate Data...</div>;
   if (!apiData) return <div className="p-10 text-center text-red-500">Data not found!</div>;
 
-  const displayData = apiData?.data?.form_response_data 
-    ? [apiData.data.form_response_data] 
-    : (Array.isArray(apiData) ? apiData : null);
+  const displayData = apiData?.data?.form_response_data
+  ? [apiData.data.form_response_data]
+  : (Array.isArray(apiData) ? apiData : null);
 
   return (
     <div className="min-h-screen bg-brown-20 p-6">
