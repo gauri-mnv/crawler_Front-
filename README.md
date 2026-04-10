@@ -58,18 +58,6 @@ A powerful, high-performance web crawler built with **NestJS** and **Puppeteer**
 
 -----
 
-## 📡 API Usage & Endpoints
-
-### Core Scraper
-
-`POST /scrape/Headlines`  
-**Body:** `{ "target": "https://example.com" }`
-
-### Dynamic Proxy (Exact API Call)
-
-`ALL /scrape/proxy-api?url={API_URL}&method={METHOD}`  
-*Used to trigger specific API calls with custom methods (GET/POST).*
-
 -----
 
 ## 🛠 Tech Stack
